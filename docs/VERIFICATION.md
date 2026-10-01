@@ -1,4 +1,18 @@
-# 最終確認 — 2026-09-10
+# 検証記録
+
+## 2026-10-02 GitHub Pages公開
+
+- 公開URL: https://altogrow-ir.github.io/liverproduction/
+- リポジトリ: `altogrow-IR/liverproduction`、公開元: `main`、Pages Source: GitHub Actions。
+- 初回公開Actions `36899188215`: 成功。CIのlint・35件のテスト・標準build・Pagesデプロイを確認。
+- ローカル検証: `npm run lint`、`npm test`（35/35）、`npm run build`、`npm run test:browser`（26/26）成功。
+- 公開URLで390pxの開始・男性スターター・カスタム名・画像保存・IndexedDBの再読み込みを `TEST_URL` 指定の `scripts/verify-build.mjs` で確認。
+- 公開URLで430/1366/1920pxのCanvas・再読み込み・横スクロールなしを確認。HTTP・console・pageエラーなし。390pxの実画面も確認。
+- iPhone/Android物理端末、Safari実機、長時間プレイは未確認。
+
+以下は各改修時点の履歴です。公開に関する以前の未確認事項は上記の検証で解消しています。
+
+## 2026-09-10 初期確認
 
 ## 実行結果
 
