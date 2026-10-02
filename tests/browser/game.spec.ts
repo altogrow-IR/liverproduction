@@ -438,3 +438,53 @@ for (const width of [390, 430, 1366, 1920]) {
     expect(errors).toEqual([]);
   });
 }
+
+for (const viewport of [
+  { width: 320, height: 568 },
+  { width: 390, height: 664 },
+  { width: 430, height: 932 },
+]) {
+  test(`mobile garden maximizes viewport and returns to menus ${viewport.width}`, async ({
+    page,
+  }) => {
+    await page.setViewportSize(viewport);
+    await seed(page, makeSave());
+    await page.getByRole("button", { name: "一時停止", exact: true }).click();
+    const canvas = page.locator(".map-stage canvas");
+    const normal = (await canvas.boundingBox())!;
+    expect(normal.width).toBe(viewport.width);
+    expect(normal.height / viewport.height).toBeGreaterThan(0.7);
+    const controls = (await page.locator(".camera-controls").boundingBox())!;
+    const mission = (await page.locator(".mission-card").boundingBox())!;
+    expect(controls.y + controls.height).toBeLessThanOrEqual(mission.y);
+    const selected = page.locator(".mobile-selected");
+    await selected.click();
+    await expect(page.getByRole("dialog")).toBeVisible();
+    await page.getByRole("button", { name: "閉じる", exact: true }).click();
+    await page.getByRole("button", { name: "広く見る" }).click();
+    const expanded = (await canvas.boundingBox())!;
+    expect(expanded.height).toBe(viewport.height);
+    await expect(page.getByRole("navigation")).toBeHidden();
+    await page.getByRole("button", { name: "拡大", exact: true }).click();
+    await page
+      .getByRole("button", { name: "カメラをリセット", exact: true })
+      .click();
+    await page.screenshot({
+      path: `test-results/garden-focus-${viewport.width}.png`,
+    });
+    await page.getByRole("button", { name: "メニューに戻る" }).click();
+    await expect(page.getByRole("navigation")).toBeVisible();
+    await page.locator(".mission-card").click();
+    await expect(page.getByRole("dialog")).toBeVisible();
+    await page.getByRole("button", { name: "閉じる", exact: true }).click();
+    await page.reload();
+    await expect(selected).toBeVisible();
+    expect(
+      await page.evaluate(
+        () =>
+          document.documentElement.scrollWidth <= innerWidth &&
+          document.documentElement.scrollHeight <= innerHeight,
+      ),
+    ).toBeTruthy();
+  });
+}

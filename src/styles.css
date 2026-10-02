@@ -2393,3 +2393,226 @@ summary {
     bottom: -16px;
   }
 }
+
+/* Mobile garden uses the available viewport; supporting UI floats at the edges. */
+.garden-focus-toggle {
+  display: none;
+}
+@media (max-width: 650px) {
+  .app {
+    position: relative;
+    min-height: 0;
+  }
+  .topbar {
+    height: calc(96px + env(safe-area-inset-top));
+    padding: calc(4px + env(safe-area-inset-top)) 12px 4px;
+    grid-template-rows: 44px 40px;
+    gap: 3px 6px;
+  }
+  .brand b {
+    font-size: 18px;
+    letter-spacing: 0;
+  }
+  .brand-star {
+    font-size: 26px;
+  }
+  .brand em {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+  .speed-controls {
+    height: 44px;
+    padding: 0;
+    gap: 0;
+  }
+  .speed-controls button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .hud {
+    padding-top: 3px;
+  }
+  .hud small {
+    font-size: 10px;
+    color: #65758a;
+  }
+  .hud strong {
+    font-size: 18px;
+  }
+  .hud-date b {
+    font-size: 12px;
+  }
+  .hud-date b span {
+    font-size: 10px;
+  }
+  .game-layout {
+    padding: 0;
+    min-height: 0;
+  }
+  .office {
+    border: 0;
+    border-radius: 0;
+  }
+  .office-heading {
+    top: 10px;
+    left: 12px;
+    right: 116px;
+  }
+  .office-heading .eyebrow,
+  .office-heading h1 {
+    display: none;
+  }
+  .office-size {
+    font-size: 12px;
+  }
+  .map-stage {
+    inset: 0;
+  }
+  .garden-focus-toggle {
+    display: block;
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    z-index: 4;
+    min-height: 44px;
+    padding: 8px 12px;
+    font-size: 12px;
+    background: #fffffff0;
+    box-shadow: var(--shadow);
+  }
+  .camera-controls {
+    right: 10px;
+    bottom: 90px;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .camera-controls button {
+    width: 44px;
+    min-height: 44px;
+  }
+  .mission-card {
+    left: 10px;
+    bottom: 31px;
+    width: calc(100% - 20px);
+    min-height: 44px;
+    padding: 6px 10px;
+    gap: 8px;
+  }
+  .mission-card small,
+  .mission-card em {
+    display: none;
+  }
+  .mission-card b {
+    font-size: 12px;
+    margin: 0;
+  }
+  .mission-icon {
+    font-size: 22px;
+  }
+  .office-meta {
+    left: 12px;
+    bottom: 9px;
+    font-size: 10px;
+    color: #607d76;
+  }
+  .map-foot {
+    right: 12px;
+    bottom: 9px;
+    font-size: 10px;
+    color: #607d76;
+  }
+  .mobile-selected {
+    position: absolute;
+    top: calc(104px + env(safe-area-inset-top));
+    left: 10px;
+    z-index: 3;
+    width: fit-content;
+    max-width: calc(100% - 126px);
+    margin: 0;
+    min-height: 44px;
+    max-height: 64px;
+    padding: 5px 8px;
+    gap: 7px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #fffffff0;
+    box-shadow: var(--shadow);
+  }
+  .mobile-selected .avatar {
+    width: 28px;
+    height: 32px;
+  }
+  .mobile-selected b {
+    font-size: 12px;
+    -webkit-line-clamp: 1;
+  }
+  .mobile-selected small,
+  .mobile-fans {
+    display: none;
+  }
+  .office-size {
+    display: none;
+  }
+  .bottom-nav {
+    padding: 4px 6px calc(4px + env(safe-area-inset-bottom));
+  }
+  .bottom-nav button {
+    min-height: 48px;
+    font-size: 10px;
+    gap: 3px;
+    padding: 5px 2px;
+  }
+  .app.is-building .mobile-selected {
+    display: none;
+  }
+  .is-building .camera-controls {
+    bottom: 132px;
+  }
+  .build-toolbar {
+    bottom: 10px;
+  }
+  .garden-focus .topbar,
+  .garden-focus .bottom-nav,
+  .garden-focus .mobile-selected,
+  .garden-focus .mission-card,
+  .garden-focus .office-heading,
+  .garden-focus .recent-card {
+    display: none;
+  }
+  .garden-focus .garden-focus-toggle {
+    top: calc(8px + env(safe-area-inset-top));
+  }
+  .garden-focus .office-meta,
+  .garden-focus .map-foot {
+    bottom: calc(10px + env(safe-area-inset-bottom));
+  }
+  .garden-focus .camera-controls {
+    bottom: calc(38px + env(safe-area-inset-bottom));
+  }
+  .garden-focus.is-building .camera-controls {
+    bottom: calc(132px + env(safe-area-inset-bottom));
+  }
+  .garden-focus .build-toolbar {
+    bottom: calc(10px + env(safe-area-inset-bottom));
+  }
+  .garden-focus .toast-stack {
+    bottom: calc(35px + env(safe-area-inset-bottom));
+  }
+  .garden-focus .crisis-banner {
+    top: calc(60px + env(safe-area-inset-top));
+  }
+}
+@media (max-width: 360px) {
+  .brand b {
+    font-size: 15px;
+  }
+  .brand-star {
+    display: none;
+  }
+  .topbar {
+    padding-inline: 8px;
+  }
+  .map-foot > span:first-child {
+    display: none;
+  }
+}

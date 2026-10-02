@@ -45,6 +45,7 @@ export default function App() {
   const [facilityId, setFacilityId] = useState<string | null>(null);
   const [building, setBuilding] = useState<FacilityKind | null>(null);
   const [ghost, setGhost] = useState<{ x: number; y: number } | null>(null);
+  const [gardenFocus, setGardenFocus] = useState(false);
 
   const [toasts, setToasts] = useState<{ id: number; text: string }[]>([]);
   const person =
@@ -108,7 +109,9 @@ export default function App() {
           panel: "missions" as Panel,
         };
   return (
-    <div className="app">
+    <div
+      className={`app ${gardenFocus ? "garden-focus" : ""} ${building ? "is-building" : ""}`}
+    >
       <header className="topbar">
         <button
           className="brand"
@@ -215,6 +218,13 @@ export default function App() {
           </span>
         </aside>
         <section className="office" aria-label="オフィス">
+          <button
+            className="garden-focus-toggle"
+            aria-pressed={gardenFocus}
+            onClick={() => setGardenFocus((value) => !value)}
+          >
+            {gardenFocus ? "↙ メニューに戻る" : "⛶ 広く見る"}
+          </button>
           <div className="office-heading">
             <div>
               <span className="eyebrow">OUR LITTLE OFFICE</span>
